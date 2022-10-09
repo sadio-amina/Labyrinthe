@@ -6,7 +6,6 @@ Created on Thu Sep 29 13:04:26 2022
 """
 
 import random
-#n = int(input("Entrez un nombre entier svp: ")) (dans le fichier main)
 
 class Case :
     """ Les cellules sont entourées par les murs à
@@ -41,37 +40,36 @@ class Labyrinthe:
         self.ix , self.iy = ix, iy
         self.laby_carte = [[Case(x, y) for y in range(n)] for x in range(n)]
        
-        # for x in range(nx):
-        #     for y in range((ny)):
-        #         print(x,y)
-        
 
     def cell_at(self, x, y): 
-         return self.laby_carte[x][y]
+        " Retourne l'objet aux coordonnées ( x et y ) "
+        return self.laby_carte[x][y]
 
     def __str__(self):
-        """Return a (crude) string representation of the maze."""
+        """Retourne le format chaine de caractère du labyrinthe ."""
 
         laby_lignes = ["." +( "#" * self.nx * 2)]
         for y in range(self.ny):
-            laby_ligne = ['# ']
+            laby_ligne = ['#']
             for x in range(self.nx):
                 if self.laby_carte[x][y].murs['E']:
-                    laby_ligne.append('# ')
+                    laby_ligne.append('##')
                 else:
-                    laby_ligne.append('. ')
+                    laby_ligne.append('..')
             laby_lignes.append(''.join(laby_ligne))
-            laby_ligne = ['# ']
+            laby_ligne = ['#']
             for x in range(self.nx):
                     if self.laby_carte[x][y].murs['S']:
-                        laby_ligne.append('# ')
+                        laby_ligne.append('##')
                     else:
-                        laby_ligne.append('. ')
+                        laby_ligne.append('..')
             laby_lignes.append(''.join(laby_ligne))
         return '\n'.join(laby_lignes)
 
+
+
     def chercher_voisins_valide(self, case):
-        """Retourne la liste de voinsins des cases non visitées ."""
+        """Retourne la liste de voisins des cases non visitées ."""
 
         delta = [('W', (-1, 0)),
                  ('E', (1, 0)),
@@ -110,46 +108,43 @@ class Labyrinthe:
            case_courante = next_cell
            nv += 1
 
-        
 
-      
+    def enregister_fichier(nom_fichier):
+        f = open("labyrinthe.txt" , "w")
+        lab = f.write(str(labie))
+        f.close()
+        return lab 
 
-labie = Labyrinthe(5)
-labie.construire_laby()
+
+
+    def lire_fichier(file_name):
+        nv_laby = []
+        f = open("labyrinthe.txt")
+        labyrinthe = f.read()
+        f.close()
+        labth = labyrinthe.splitlines()
+        for ligne in labth:
+            nv_laby.append(list(ligne))
+
+        print(nv_laby)
+
+
+
+#labie = Labyrinthe(10)
+#labie.construire_laby()
 #print(labie)
-labie= str(labie)
-
-def enregister_fichier(nom_fichier):
-    f = open(nom_fichier , "w")
-    labyrint = f.write(labie)
-    f.close()
-    return labyrint
-
-enregister_fichier("labyrinthe.txt")
-def lire_fichier(file_name):
-    f = open(file_name)
-    maze = f.read()
-    f.close()
-    return maze
-
-lire_fichier("labyrinthe.txt")
-
-
-# def convert_maze(maze):
-#     converted_maze = []
-#     lines = maze.splitlines()
-#     for line in lines:
-#         converted_maze.append(list(line))
-#     return converted_maze
+#labie.enregister_fichier()
+# labie.lire_fichier()
 
 
 
-case1 = Case(0, 0)
-#case2 = Case(0, 1)
 
-#print(case1.verifier_murs())
-case1.casser_mur('E', case1)
-#print(case1.murs)
+
+
+
+
+
+
 
 
 
