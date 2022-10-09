@@ -130,11 +130,11 @@ class Labyrinthe:
 
 
 
-#labie = Labyrinthe(10)
-#labie.construire_laby()
-#print(labie)
-#labie.enregister_fichier()
-# labie.lire_fichier()
+labie = Labyrinthe(10)
+labie.construire_laby()
+print(labie)
+labie.enregister_fichier()
+#labie.lire_fichier()
 
 
 
